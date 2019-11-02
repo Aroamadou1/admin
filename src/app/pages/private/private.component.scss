@@ -1,0 +1,55 @@
+
+.logo {
+  height: 150px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+  a {
+    font-weight: 700;
+    line-height: 48px;
+    font-size: 2em;
+    text-transform: uppercase;
+    // text-align: right !important;
+    color: #ffc312;
+  }
+  span{
+      color: #4a148c;
+  }
+}
+#container {
+  height: 100%;
+  width: 100%;
+  // border: 1px solid black;
+}
+.sidebar{
+  background: url(../../../assets/img/bg.jpg) no-repeat center fixed;
+  -webkit-background-size: cover; /* pour anciens Chrome et Safari */
+  background-size: cover;
+    .sidebar-content{
+        background: rgba(255, 255, 255, 0.9);
+    }
+}
+
+.main-panel {
+  height: 100%;
+  nav {
+    height: 20%;
+  }
+
+  .content {
+    height: 70%;
+  }
+
+  footer {
+    height: 10%;
+  }
+}
+
+.dropcard {
+  width: 130px;
+  z-index: 100 !important;
+  position: absolute;
+  right: 0;
+  top: 20px;
+  display: none;
+}

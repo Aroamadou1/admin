@@ -1,0 +1,61 @@
+<div>
+
+    <div class="text-center">
+        <button type="button" rel="tooltip" title="Generer le bilan" class="btn btn-primary btn-sm"
+            id="showModal" (click)="onAdd()">
+            Generer le bilan
+        </button>
+
+    </div>
+</div>
+<div class="row">
+
+    <div class="col-md-3">
+        <a class="nav-link" data-toggle="tab">
+            Recuperer le stock du:
+        </a>
+    </div>
+    <div class="col-md-3">
+        <form class="form-inline">
+            <div class="md-form my-0">
+                <input class="form-control mr-sm-2" type="date" [(ngModel)]="jour" [ngModelOptions]="{standalone: true}">
+            </div>
+        </form>
+    </div>
+    <div class="col-md-3">
+        <button  type="button" rel="tooltip" title="Rechercher" class="btn btn-primary btn-sm"
+            id="showModal" [disabled] ="!jour" (click)="search()">
+           Rechercher
+        </button>
+    </div>
+</div>
+<div class="row">
+    <table class="table" *ngIf="(bilanData.data|searchEntity:searchService.search).length!=0">
+        <thead class="text-warning">
+            <th>#</th>
+            <th>Nom</th>
+            <th>Quantite en Stock</th>
+            <th>Quantite Réel</th>
+        </thead>
+        <tbody>
+            <tr [ngClass]="{'table-row': true, 'table-row-warning':item.quantiteReel<item.quantiteCritique&&item.quantiteReel>0, 'table-row-danger':item.quantiteReel<=0}"
+                *ngFor="let item of bilanData.data|searchEntity:searchService.search; let i=index;">
+                <td>
+                    {{i+1}}
+                </td>
+                <td>
+                    {{item.nom}}
+                </td>
+                <td>
+                    {{item.quantiteStock}}
+                </td>
+                <td>
+                    {{item.quantiteReel}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div *ngIf="(bilanData.data|searchEntity:searchService.search).length===0">
+        <span class="text-danger">Aucunbilan</span>
+    </div>
+</div>

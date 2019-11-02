@@ -1,0 +1,112 @@
+<div class="container-fluid">
+    <div class="card">
+
+        <div class="card-header card-header-tabs card-header-primary">
+            <div class="nav-tabs-navigation">
+                <div class="nav-tabs-wrapper">
+                    <ul class="nav nav-tabs nav-justified" data-tabs="tabs">
+                        <li class="nav-item">
+                            <a [ngClass]="{'nav-link': true, 'active': type==='user'}" (click)="type='user'"
+                                data-toggle="tab">
+                                <i class="material-icons">group</i>Utilisateurs
+                                <!-- <span class="badge badge-pill badge-light text-left"
+                                    *ngIf="!showArchive">{{adminData.data.length}}</span>
+                                -->
+                                <div class="ripple-container"></div>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a [ngClass]="{'nav-link': true, 'active': type==='marchandise'}" (click)="type='marchandise'"
+                                data-toggle="tab">
+                                <i class="material-icons">style</i>Marchandises
+                                <!-- <span class="badge badge-pill badge-light text-left"
+                                    *ngIf="!showArchive">{{adminData.data.length}}</span>
+                                -->
+                                <div class="ripple-container"></div>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a [ngClass]="{'nav-link': true, 'active': type==='connexion'}" (click)="type='connexion'"
+                                data-toggle="tab">
+                                <i class="material-icons">transfer_within_a_station</i>Connexion
+                                <!-- <span class="badge badge-pill badge-light text-left">{{vendeurData.data.length}}</span> -->
+
+                                <div class="ripple-container"></div>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a [ngClass]="{'nav-link': true, 'active': type==='inventaire'}" (click)="type='inventaire'"
+                                data-toggle="tab">
+                                <i class="material-icons">compare_arrows</i> Inventaires
+                                <!-- <span
+                                    class="badge badge-pill badge-light text-left">{{magasinierData.data.length}}</span>
+                               -->
+                                <div class="ripple-container"></div>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a [ngClass]="{'nav-link': true, 'active': type=='sortie'}" (click)="type='sortie'"
+                                data-toggle="tab">
+                                <i class="material-icons">subdirectory_arrow_right</i> Sorties
+                                <!-- <span class="badge badge-pill badge-light text-left">{{sortiesData.data.length}}</span> -->
+
+                                <div class="ripple-container"></div>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a [ngClass]="{'nav-link': true, 'active': type==='entree'}" (click)="type='entree'"
+                                data-toggle="tab">
+                                <i class="material-icons">subdirectory_arrow_left</i> Entrees
+                                <!-- <span
+                                    class="badge badge-pill badge-light text-left">{{fournisseurData.data.length}}</span>
+                                 -->
+                                <div class="ripple-container"></div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card-body">
+                <div class="row">
+
+                        <div class="col-md-3">
+                            <a class="nav-link" data-toggle="tab">
+                                Obtenir l'historique du:
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <form class="form-inline">
+                                <div class="md-form my-0">
+                                    <input class="form-control mr-sm-2" type="date" [(ngModel)]="jour" [ngModelOptions]="{standalone: true}">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-3">
+                            <button  type="button" rel="tooltip" title="Rechercher" class="btn btn-primary btn-sm"
+                                id="showModal" (click)="search()">
+                               Rechercher
+                            </button>
+                        </div>
+                    </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="card-title">Notifications</h4>
+                    <div [ngClass]="{'alert': true, 'alert-info': item.codeOperation===1, 'alert-danger': item.codeOperation===0, 'alert-primary': item.codeOperation===2, 'alert-warning': item.codeOperation===3}"
+                        *ngFor="let item of notData.data|byType:type|searchNotification:searchService.search">
+                        <span>
+                            <b>{{item.created_at|date:'dd-MM-yyyy HH:mm'}} - </b> {{item.message}}</span>
+                    </div>
+
+                </div>
+                <div *ngIf="(notData.data|byType:type).length===0">
+                    <span class="text-danger">Aucune notification pour le moment</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

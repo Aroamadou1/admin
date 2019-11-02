@@ -1,0 +1,73 @@
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-612">
+            <div class="card card-stats">
+                <div class="card-header card-header-success card-header-icon">
+                    <div class="card-icon">
+                        <i class="fa fa-thumbs-up"></i>
+                    </div>
+                    <p class="card-category">Articles le plus vendu</p>
+                    <h3 class="card-title">{{statData.bestSell.categorie}} {{statData.bestSell.nom}} : <span class="text-danger">{{statData.bestSell.quantite}}</span></h3>
+                </div>
+                <div class="card-footer">
+                    <div class="stats" routerLink="../sorties">
+                        <i class="material-icons">subdirectory_arrow_right</i> voir les ventes
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="card card-stats">
+                <div class="card-header card-header-danger card-header-icon">
+                    <div class="card-icon">
+                        <i class="fa fa-thumbs-down"></i>
+                    </div>
+                    <p class="card-category">Articles le moins vendu</p>
+                    <h3 class="card-title">{{statData.worstSell.categorie}} {{statData.worstSell.nom}} : <span class="text-danger">{{statData.worstSell.quantite}}</span></h3>
+                </div>
+                <div class="card-footer">
+                    <div class="stats" routerLink="../sorties">
+                        <i class="material-icons">subdirectory_arrow_right</i> voir les ventes
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="card card-stats">
+                <div class="card-header card-header-info card-header-icon">
+                    <div class="card-icon">
+                        <i class="fa fa-users"></i>
+                    </div>
+                    <p class="card-category">Utilisateur en ligne</p>
+                    <h3 class="card-title text-primary">{{statData.usersOnline}}</h3>
+                </div>
+                <div class="card-footer">
+                    <div class="stats" routerLink="../users">
+                        <i class="material-icons">group</i> voir les utilisateurs
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="card" style="min-height: 300px;">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 class="card-title">En Attente de confirmation</h4>
+                        <div (click)="gotToConfirm(item.type)" [ngClass]="{'alert': true, 'alert-info': item.codeOperation===1, 'alert-danger': item.codeOperation===0, 'alert-primary': item.codeOperation===2, 'alert-warning': item.codeOperation===3}"
+                            *ngFor="let item of notData.data|urgence">
+                            <span>
+                                <b>{{item.created_at|date:'dd-MM-yyyy HH:mm'}} - </b> {{item.message}}</span>
+                        </div>
+                        <div *ngIf="(notData.data|urgence).length===0">
+                            <span class="text-danger">Aucune notification pour le moment</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

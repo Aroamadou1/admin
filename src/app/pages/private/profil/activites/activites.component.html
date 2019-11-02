@@ -1,0 +1,20 @@
+<p>activites works!</p>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>date</th>
+            <th>heure</th>
+            <th>activite</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of activites;let i=index;">
+            <th scope="row">{{i+1}}</th>
+            <td>{{item.created_at|date:'dd-MM-yyyy'}}</td>
+            <td>{{item.created_at|date:'HH:mm'}}</td>
+            <td>{{item.titre}}</td>
+            <!-- <td>{{item.message}}</td> -->
+        </tr>
+    </tbody>
+</table>

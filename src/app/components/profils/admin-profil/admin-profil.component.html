@@ -1,0 +1,129 @@
+<div class="modal-content">
+    <!--Header-->
+    <div class="modal-header">
+        <h4 class="modal-title txt-center" id="myModalLabel">Administrateur {{user.nom}}</h4>
+        <button type="button" class="close" (click)="onClose()" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <!--Body-->
+    <div class="modal-body profil">
+        <div class="mb-5">
+            <ul class="nav nav-tabs nav-justified">
+                <li class="nav-item " (click)="menu='infos'">
+                    <a [ngClass]="{'nav-link': true, 'active': menu==='infos'}">Information</a>
+                    
+                </li>
+                <li class="nav-item " (click)="menu='historique'">
+                    <a [ngClass]="{'nav-link': true, 'active': menu==='historique'}">Historique
+                        <span class="badge badge-pill badge-info text-left">{{historiques.length}}</span>
+                    </a>
+                  
+                </li>
+                <li class="nav-item " (click)="menu='activite'">
+                    <a [ngClass]="{'nav-link': true, 'active': menu==='activite'}">Activités
+                        <span class="badge badge-pill badge-info text-left">{{activites.length}}</span>
+                    </a>
+                    
+                </li>
+            </ul>
+        </div>
+        <div *ngIf="menu==='infos'">
+            <div class="input-group form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Nom</span>
+                </div>
+                <div class="value">
+                    <span>{{user.nom| uppercase}}</span>
+                </div>
+            </div>
+            <div class="input-group form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Prenom</span>
+                </div>
+                <div class="value">
+                    <span>{{user.prenom}}</span>
+                </div>
+            </div>
+            <div class="input-group form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Contact</span>
+                </div>
+                <div class="value">
+                    <span>{{user.contact}}</span>
+                </div>
+            </div>
+            <div class="input-group form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Identifiant</span>
+                </div>
+                <div class="value">
+                    <span>{{user.identifiant}}</span>
+                </div>
+            </div>
+        </div>
+
+
+        <div *ngIf="menu==='historique'">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Date</th>
+                        <th>Heure</th>
+                        <th>Type</th>
+                        <th>Fait par</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of historiques; let i=index">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{item.created_at|date:'dd-MM-yyyy'}}</td>
+                        <td>{{item.created_at|date:'HH:mm'}}</td>
+                        <td>
+                            <span *ngIf="item.codeOperation===0">Supression</span>
+                            <span *ngIf="item.codeOperation===1">Ajout</span>
+                            <span *ngIf="item.codeOperation===2">Modification</span>
+                            <span *ngIf="item.codeOperation===3">Renitialisation du mot de passe</span>
+                            <span *ngIf="item.codeOperation===4">Restauration</span>
+                            <span *ngIf="item.codeOperation===5">Validation</span>
+                            <span *ngIf="item.codeOperation===6">Annulation</span>
+                        </td>
+                        <td>{{item.nom}} {{item.prenom}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div *ngIf="menu==='activite'">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>date</th>
+                        <th>heure</th>
+                        <th>activite</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of activites;let i=index;">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{item.created_at|date:'dd-MM-yyyy'}}</td>
+                        <td>{{item.created_at|date:'HH:mm'}}</td>
+                        <td>{{item.titre}}</td>
+                        <!-- <td>{{item.message}}</td> -->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+    <!--Footer-->
+    <div class="modal-footer">
+        <button *ngIf="!user.deleted_at" type="button" class="btn btn-primary" (click)="onResetPassword()">Renit mot de passe</button>
+        <button *ngIf="!user.deleted_at" class="btn btn-danger" (click)="onDelete()">Supprimer</button>
+        <button *ngIf="user.deleted_at" class="btn btn-danger" (click)="onRestore()">Restaurer</button>
+    </div>
+</div>
+<!-- Modal: modalCart -->

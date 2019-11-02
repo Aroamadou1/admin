@@ -1,0 +1,84 @@
+<div class="modal-content">
+    <!-- Modal Header -->
+    <div class="modal-header">
+        <h4 class="modal-title text-white">{{titre}}</h4>
+        <button id="closeModal" type="button" class="close btn-danger" (click)="onClose()">&times;</button>
+    </div>
+
+    <!-- Modal body -->
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="modal-body form">
+
+            <div class="input-group form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Categorie</span>
+                </div>
+                <select formControlName="categorie_id" id="" class="form-control">
+                    <option *ngFor="let item of catData.data" [value]="item.id">{{item.nom}}</option>
+                </select>
+
+            </div>
+
+
+            <div class="input-group form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Nom</span>
+                </div>
+                <input type="text" class="form-control" formControlName="nom" placeholder="Entrez le nom">
+
+            </div>
+            <div *ngIf="nom.invalid && (nom.dirty || nom.touched)" class="alert alert-danger">
+
+                <div *ngIf="nom.errors.required">
+                    le nom est requis.
+                </div>
+                <div *ngIf="nom.errors.minlength">
+                    le nom doit être superieur à 2 characteres.
+                </div>
+                <div *ngIf="nom.errors.maxlength">
+                    le nom doit être inferieur à 30 characteres.
+                </div>
+            </div>
+
+
+
+            <!-- <div class="input-group form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Quantite</span>
+                </div>
+                <input type="text" class="form-control" formControlName="quantite" placeholder="Entrez la quantité">
+
+            </div>
+            <div *ngIf="quantite.invalid && (quantite.dirty || quantite.touched)" class="alert alert-danger">
+
+                <div *ngIf="quantite.errors.required">
+                    la quantité est requise.
+                </div>
+            </div> -->
+
+
+            <div class="input-group form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Quantite d'alerte</span>
+                </div>
+                <input type="number" class="form-control" formControlName="quantiteCritique"
+                    placeholder="Entrez la quantité minimale pour etre notifié">
+
+            </div>
+            <div *ngIf="quantiteCritique.invalid && (quantiteCritique.dirty || quantiteCritique.touched)"
+                class="alert alert-danger">
+
+                <div *ngIf="quantiteCritique.errors.required">
+                    la quantité d'alerte est requise.
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            <button type="reset" class="btn btn-danger">Effacer</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Valider</button>
+        </div>
+    </form>
+</div>

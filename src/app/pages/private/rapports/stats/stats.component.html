@@ -1,0 +1,49 @@
+<div>
+    </div>
+    <div class="row">
+    
+        <div class="col-md-3">
+            <a class="nav-link" data-toggle="tab">
+                Recuperer les données du :
+            </a>
+        </div>
+        <div class="col-md-3">
+            <form class="form-inline">
+                <div class="md-form my-0">
+                    <input class="form-control mr-sm-2" type="date" [(ngModel)]="jour" [ngModelOptions]="{standalone: true}">
+                </div>
+            </form>
+        </div>
+        <div class="col-md-3">
+            <button  type="button" rel="tooltip" title="Rechercher" class="btn btn-primary btn-sm"
+                id="showModal" [disabled] ="!jour" (click)="search()">
+               Rechercher
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table" *ngIf="(statData.activities|searchEntity:searchService.search).length!=0">
+            <thead class="text-warning">
+                <th>#</th>
+                <th>Nom</th>
+                <th>Quantite vendu</th>
+            </thead>
+            <tbody>
+                <tr
+                    *ngFor="let item of statData.activities|searchEntity:searchService.search; let i=index;">
+                    <td>
+                        {{i+1}}
+                    </td>
+                    <td>
+                        {{item.categorie}} {{item.nom}}
+                    </td>
+                    <td>
+                        {{item.quantite}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div *ngIf="(statData.activities|searchEntity:searchService.search).length===0">
+            <span class="text-danger">Aucune statistique</span>
+        </div>
+    </div>

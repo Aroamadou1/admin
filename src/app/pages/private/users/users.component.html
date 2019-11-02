@@ -1,0 +1,81 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div class="card">
+                <div class="card-header card-header-tabs card-header-primary">
+                    <div class="nav-tabs-navigation">
+                        <div class="nav-tabs-wrapper">
+                            <ul class="nav nav-tabs nav-justified" data-tabs="tabs">
+                                <li class="nav-item" [routerLink]="['admins']">
+                                    <a  class="nav-link"  routerLinkActive="active"
+                                        (click)="searchService.search='';showArchive=false;fonction='admin'"
+                                        data-toggle="tab">
+                                        <i class="material-icons">airline_seat_recline_normal</i>Administrateurs
+                                        <span class="badge badge-pill badge-light text-left"
+                                            *ngIf="!showArchive">{{adminData.data.length}}</span>
+                                        <span class="badge badge-pill badge-light text-left"
+                                            *ngIf="showArchive  && fonction==='admin' ">{{archives.length}}</span>
+                                        <div class="ripple-container"></div>
+                                    </a>
+                                </li>
+                                <li class="nav-item" [routerLink]="['vendeurs']">
+                                    <a  class="nav-link"  routerLinkActive="active"
+                                        (click)="searchService.search='';showArchive=false;fonction='vendeur'"
+                                        data-toggle="tab">
+                                        <i class="material-icons">shopping_cart</i>Vendeurs
+                                        <span
+                                            class="badge badge-pill badge-light text-left" *ngIf="!showArchive">{{vendeurData.data.length}}</span>
+                                        <span class="badge badge-pill badge-light text-left"
+                                            *ngIf="showArchive && fonction==='vendeur' ">{{archives.length}}</span>
+                                        <div class="ripple-container"></div>
+                                    </a>
+                                </li>
+                                <li class="nav-item" [routerLink]="['magasiniers']">
+                                    <a  class="nav-link"  routerLinkActive="active"
+                                        (click)="searchService.search='';showArchive=false;fonction='magasinier'"
+                                        data-toggle="tab">
+                                        <i class="material-icons">transfer_within_a_station</i> Magasiniers
+                                        <span
+                                            class="badge badge-pill badge-light text-left" *ngIf="!showArchive">{{magasinierData.data.length}}</span>
+                                        <span class="badge badge-pill badge-light text-left"
+                                            *ngIf="showArchive && fonction==='magasinier'">{{archives.length}}</span>
+                                        <div class="ripple-container"></div>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item" [routerLink]="['porteurs']">
+                                    <a  class="nav-link"  routerLinkActive="active"
+                                        (click)="searchService.search='';showArchive=false;fonction='porteur'"
+                                        data-toggle="tab">
+                                        <i class="material-icons">directions_run</i> Porteurs
+                                        <span
+                                            class="badge badge-pill badge-light text-left" *ngIf="!showArchive">{{porteurData.data.length}}</span>
+                                        <span class="badge badge-pill badge-light text-left"
+                                            *ngIf="showArchive && fonction==='porteur'">{{archives.length}}</span>
+                                        <div class="ripple-container"></div>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item" [routerLink]="['fournisseurs']">
+                                    <a class="nav-link"  routerLinkActive="active"
+                                        (click)="searchService.search='';showArchive=false;fonction='fournisseur'"
+                                        data-toggle="tab">
+                                        <i class="material-icons">save_alt</i> Fournisseurs
+                                        <span
+                                            class="badge badge-pill badge-light text-left" *ngIf="!showArchive">{{fournisseurData.data.length}}</span>
+                                        <span class="badge badge-pill badge-light text-left"
+                                            *ngIf="showArchive && fonction==='fournisseur'">{{archives.length}}</span>
+                                        <div class="ripple-container"></div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>

@@ -1,0 +1,33 @@
+table{
+    tr{
+        td{
+            font-size: 1.3em;
+        }
+        th{
+            font-size: 1.5em;
+            font-weight: 700;
+        }
+       
+    }
+    tr.table-row{
+        // font-size: 1.3em !important;
+    }
+
+    tr.table-row-success{
+        td{
+            color: green;
+        }
+    }
+
+    tr.table-row-danger{
+        td{
+            color: red;
+        }
+    }
+
+    tr.table-row-warning{
+        td{
+            color: orange;
+        }
+    }
+}

@@ -1,0 +1,104 @@
+<div class="modal-content">
+    <!-- Modal Header -->
+    <div class="modal-header">
+        <h4 class="modal-title text-white">{{titre}}</h4>
+        <button id="closeModal" type="button" class="close btn-danger" (click)="onClose()">&times;</button>
+    </div>
+
+    <!-- Modal body -->
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <div class="modal-body form">
+            <div class="input-group form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Nom</span>
+                </div>
+                <input type="text" class="form-control" formControlName="nom" placeholder="Entrez le nom">
+            </div>
+            <div *ngIf="nom.invalid && (nom.dirty || nom.touched)" class="alert alert-danger">
+
+                <div *ngIf="nom.errors.required">
+                    le nom est requis.
+                </div>
+                <div *ngIf="nom.errors.minlength">
+                    le nom doit être superieur à 2 characteres.
+                </div>
+                <div *ngIf="nom.errors.maxlength">
+                    le nom doit être inferieur à 30 characteres.
+                </div>
+            </div>
+
+
+            <div class="input-group form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Prenom</span>
+                </div>
+                <input type="text" class="form-control" formControlName="prenom" placeholder="Entrez le prenom">
+
+            </div>
+            <div *ngIf="prenom.invalid && (prenom.dirty || prenom.touched)" class="alert alert-danger">
+
+                <div *ngIf="prenom.errors.required">
+                    le prenom est requis.
+                </div>
+                <div *ngIf="prenom.errors.minlength">
+                    le prenom doit être superieur à 2 characteres.
+                </div>
+                <div *ngIf="prenom.errors.maxlength">
+                    le prenom doit être inferieur à 30 characteres.
+                </div>
+            </div>
+
+
+
+            <div class="input-group form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Contact</span>
+                </div>
+                <input type="text" class="form-control" formControlName="contact" placeholder="Entrez le contact">
+
+            </div>
+            <div *ngIf="contact.invalid && (contact.dirty || contact.touched)" class="alert alert-danger">
+
+                <div *ngIf="contact.errors.required">
+                    le contact est requis.
+                </div>
+                <div *ngIf="contact.errors.minlength">
+                    le contact doit être superieur à 8 characteres.
+                </div>
+                <div *ngIf="contact.errors.maxlength">
+                    le contact doit être inferieur à 30 characteres.
+                </div>
+            </div>
+
+
+            <div class="input-group form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Identifiant</span>
+                </div>
+                <input type="text" class="form-control" formControlName="identifiant"
+                    placeholder="Entrez l'identifiant">
+
+            </div>
+            <div *ngIf="identifiant.invalid && (identifiant.dirty || identifiant.touched)" class="alert alert-danger">
+
+                <div *ngIf="identifiant.errors.required">
+                    l' identifiant est requis.
+                </div>
+                <div *ngIf="identifiant.errors.minlength">
+                    l' identifiant doit être superieur à 4 characteres.
+                </div>
+                <div *ngIf="identifiant.errors.maxlength">
+                    l' identifiant doit être inferieur à 30 characteres.
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            <button type="reset" class="btn btn-danger">Effacer</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Valider</button>
+        </div>
+    </form>
+</div>

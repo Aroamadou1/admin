@@ -1,0 +1,46 @@
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div class="card">
+                <div class="card-header card-header-tabs card-header-primary">
+                    <div class="nav-tabs-navigation">
+                        <div class="nav-tabs-wrapper">
+                            <ul class="nav nav-tabs nav-justified" data-tabs="tabs">
+                                <li class="nav-item" [routerLink]="['bilan']">
+                                    <a class="nav-link"  routerLinkActive="active"
+                                        data-toggle="tab">
+                                        <i class="material-icons">compare_arrows</i>Bilan
+    
+                                       
+                                        <div class="ripple-container"></div>
+                                    </a>
+                                </li>
+                                <li class="nav-item" [routerLink]="['inventaires']">
+                                    <a class="nav-link"  routerLinkActive="active"
+                                        data-toggle="tab">
+                                        <i class="material-icons">cached</i>Inventaires
+            
+                                        <div class="ripple-container"></div>
+                                    </a>
+                                </li>
+                                <li class="nav-item" [routerLink]="['stats']">
+                                    <a class="nav-link"  routerLinkActive="active"
+                                        data-toggle="tab">
+                                        <i class="material-icons">show_chart</i>Statistiques
+            
+                                        <div class="ripple-container"></div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

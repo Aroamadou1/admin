@@ -1,0 +1,29 @@
+<div id="container">
+  <div class="row titre text-center">
+      <span class="title  text-warning">VONAMAWU</span>
+  </div>
+    <div class="row body">
+      <div class="col-md-7">
+        <section id="hero">
+          <div class="hero-container">
+            <div class="wow fadeIn">
+              <!-- <div class="hero-logo">
+                <img class="" src="../../../assets/img/logo.png" alt="VONAMAWU">
+              </div> -->
+              <h1>L'admimistrateur</h1>
+              
+              <h2>A VONAMAWU <span class="rotating">C'est le travail, la discipline, pour la satisfaction de notre
+                  clientèle</span>
+              </h2>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="login-box col-md-5">
+        <div class="box-2">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+      <app-loader [message]="auth.message"></app-loader>
+    </div>
+  </div>

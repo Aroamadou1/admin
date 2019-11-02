@@ -1,0 +1,53 @@
+<div class="modal-content">
+    <!-- Modal Header -->
+    <div class="modal-header bg-info">
+        <h4 class="modal-title text-white">{{titre}}</h4>
+        <button id="closeModal" type="button" class="close btn-danger" (click)="onClose()">&times;</button>
+    </div>
+
+    <!-- Modal body -->
+    <div class="modal-body form">
+
+        <div class="input-group form-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Motif</span>
+            </div>
+            <input type="text" class="form-control" [(ngModel)]="operation.motif" [ngModelOptions]="{standalone: true}"
+                placeholder="Entrez le motif de l'inventaire">
+        </div>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th class="prod">Produit</th>
+                    <th class="quant">quantite</th>
+                    <th>Ajuster</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let cat of catData.data">
+                <tr>
+                    <td colspan="4" class="text-center text-info">{{cat.nom}}</td>
+                </tr>
+                <tr [ngClass]="{'table-row': true, 'table-row-danger': item.quantiteCompte!=item.quantiteStock, 'table-row-warning':item.quantiteCompte===null}" *ngFor="let item of produitsArray|byCategorie: cat.id; let i=index">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{item.nom}}</td>
+                    <td >
+                        <input type="number" class="form-control" [(ngModel)]="item.quantiteCompte"
+                            [ngModelOptions]="{standalone: true}">
+                        <!-- <span>{{item.quantite}}</span> -->
+                    </td>
+                    <td>
+                        <input *ngIf="item.quantiteCompte!=item.quantiteStock" type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.strategie">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal footer -->
+    <div class="modal-footer">
+        <button (click)="reset()" class="btn btn-danger">Effacer</button>
+        <button (click)="valider()" class="btn btn-primary">Valider</button>
+    </div>
+</div>

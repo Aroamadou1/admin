@@ -1,0 +1,153 @@
+<div class="wrapper " id="container">
+    <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+        <!--
+         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+ 
+         Tip 2: you can also add an image using data-image tag
+     -->
+        <div class="sidebar-content">
+            <div class="logo text-center">
+                <a>
+                    VONAMAWU
+                </a>
+                <br>
+                <span>L'Administrateur</span>
+            </div>
+
+            <div class="sidebar-wrapper">
+                <ul class="nav">
+                    <li class="nav-item " routerLinkActive="active">
+                        <a class="nav-link" routerLink="dashboard">
+                            <i class="material-icons">home</i>
+                            <p>Accueil</p>
+                        </a>
+                    </li>
+                    <li class="nav-item " routerLinkActive="active">
+                        <a class="nav-link" routerLink="users">
+                            <i class="material-icons">group</i>
+                            <p>Utilisateurs</p>
+                        </a>
+                    </li>
+                    <li class="nav-item " routerLinkActive="active">
+                        <a class="nav-link" routerLink="marchandises">
+                            <i class="material-icons">style</i>
+                            <p>Marchandises</p>
+                        </a>
+                    </li>
+                    <li class="nav-item " routerLinkActive="active">
+                        <a class="nav-link" routerLink="entrees">
+                            <i class="material-icons">subdirectory_arrow_left</i>
+                            <p>Entrees</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item " routerLinkActive="active">
+                        <a class="nav-link" routerLink="sorties">
+                            <i class="material-icons">subdirectory_arrow_right</i>
+                            <p>Sorties</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item " routerLinkActive="active">
+                        <a class="nav-link" routerLink="rapports">
+                            <i class="material-icons">assessment</i>
+                            <p>Rapports</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item " routerLinkActive="active">
+                        <a class="nav-link" routerLink="historiques">
+                            <i class="material-icons">alarm</i>
+                            <p>Historiques</p>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="main-panel">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+            <div class="container-fluid">
+                <div class="navbar-wrapper">
+                    <a class="navbar-brand" *ngIf="user" routerLink="profil">{{user.nom}} {{user.prenom}}</a>
+                </div>
+                <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="navbar-toggler-icon icon-bar"></span>
+                    <span class="navbar-toggler-icon icon-bar"></span>
+                    <span class="navbar-toggler-icon icon-bar"></span>
+                </button> -->
+                <div class="collapse navbar-collapse justify-content-end">
+                    <form class="navbar-form">
+                        <div class="input-group no-border">
+                            <input type="text" value="" class="form-control" [(ngModel)]="searchService.search"
+                                [ngModelOptions]="{standalone: true}" placeholder="Recherche...">
+                            <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                                <i class="material-icons">search</i>
+                                <div class="ripple-container"></div>
+                            </button>
+                        </div>
+                    </form>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="../public/wellcome">
+                                <i class="material-icons">dashboard</i>
+                                <p class="d-lg-none d-md-block">
+                                    Stats
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" id="navbarDropdownMenuLink"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="material-icons">notifications</i>
+                                <span class="notification">{{(notData.data|urgence).length}}</span>
+                                <p class="d-lg-none d-md-block">
+                                    Notifications
+                                </p>
+                            </a>
+
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" (click)="showDropdown()">
+                                <i class="material-icons">person</i>
+                                <p class="d-lg-none d-md-block">
+                                    <!-- {{user.nom}} {{user.prenom}} -->
+                                </p>
+                            </a>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- End Navbar -->
+
+        <div class="content">
+            <div class="card dropcard">
+                <a class="dropdown-item" routerLink="profil">Profil</a>
+                <!-- <a class="dropdown-item" href="#">Settings</a> -->
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" (click)="onLogout()">Deconnexion</a>
+            </div>
+            <router-outlet></router-outlet>
+        </div>
+        <footer class="footer">
+            <div class="container-fluid">
+
+                <div class="copyright float-center">
+                    &copy;
+                    VONAMAWU 2019
+                    by
+                    <a href="https://www.enna.com" target="_blank">ENNA TECHNOLOGIE</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <app-loader [message]="authService.message"></app-loader>
+</div>
+
+<!--   Core JS Files   -->

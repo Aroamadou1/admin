@@ -1,0 +1,106 @@
+<table class="table">
+    <thead class="text-warning">
+        <th>#</th>
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>Contact</th>
+        <th >status</th>
+        <th></th>
+    </thead>
+    <tbody *ngIf="showArchive===false">
+        <tr *ngFor="let item of adminData.data|searchUser:searchService.search; let i=index;">
+            <td>
+                {{i+1}}
+            </td>
+            <td>
+                {{item.nom}}
+            </td>
+            <td>
+                {{item.prenom}}
+            </td>
+            <td>
+                {{item.contact}}
+            </td>
+            <td>
+                <span class="text-success" *ngIf="item.isOnline">en ligne</span>
+                <span class="text-danger" *ngIf="!item.isOnline">hors ligne</span>
+            </td>
+            <td class="td-actions text-right">
+                <button type="button" rel="tooltip" title="Voir en details" (click)="onShow(item)"
+                    class="btn btn-primary btn-link btn-sm">
+                    <i class="material-icons">visibility</i>
+                </button>
+                <button type="button" rel="tooltip" title="Modifier"
+                    class="btn btn-primary btn-link btn-sm" (click)="onEdit(item)">
+                    <i class="material-icons">edit</i>
+                </button>
+                <button type="button" rel="tooltip" title="Supprimer" (click)="onDelete(item)"
+                    class="btn btn-danger btn-link btn-sm">
+                    <i class="material-icons">close</i>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+    <tbody *ngIf="showArchive===true">
+        <tr *ngFor="let item of adminData.archives; let i=index;">
+            <td>
+                {{i+1}}
+            </td>
+            <td>
+                {{item.nom}}
+            </td>
+            <td>
+                {{item.prenom}}
+            </td>
+            <td>
+                {{item.contact}}
+            </td>
+            <td>
+                <span class="text-danger">Archivé</span>
+            </td>
+            <td class="td-actions text-right">
+                <button type="button" rel="tooltip" title="Voir en details" (click)="onShow(item)"
+                    class="btn btn-primary btn-link btn-sm">
+                    <i class="material-icons">visibility</i>
+                </button>
+                <button type="button" rel="tooltip" title="Restaurer" (click)="onRestore(item)"
+                    class="btn btn-primary btn-link btn-sm">
+                    <i class="material-icons">replay</i>
+                </button>
+                <!-- <button type="button" rel="tooltip" title="Supprimer" (click)="onDelete(item)" (click)="onDelete(item)"
+                        class="btn btn-danger btn-link btn-sm">
+                        <i class="material-icons">close</i>
+                    </button> -->
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="text-center">
+    <button *ngIf="!showArchive" type="button" rel="tooltip"
+        title="voir les admins supprimés" class="btn btn-danger btn-sm" id="showModal"
+        (click)="onShowTrash()">
+        <i class="material-icons">delete</i>Voir les archives
+    </button>
+
+    <button *ngIf="showArchive" type="button" rel="tooltip" title="voir les admins"
+        class="btn btn-success btn-sm" id="showModal" (click)="onBackToData()">
+        <i class="material-icons">visibility</i>Voir les non-archivés
+    </button>
+
+    <button *ngIf="!showArchive" type="button" rel="tooltip" title="Ajouter"
+        class="btn btn-primary btn-sm" id="showModal" (click)="onAdd()">
+        <i class="material-icons">person_add</i>Ajouter un admin
+    </button>
+
+</div>
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <app-admin-form></app-admin-form>
+    </div>
+</div>
+
+<div class="modal" id="myProfilModal">
+    <div class="modal-dialog">
+        <app-admin-profil></app-admin-profil>
+    </div>
+</div>

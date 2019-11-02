@@ -1,0 +1,57 @@
+<div class="modal-content">
+    <!-- Modal Header -->
+    <div class="modal-header bg-info">
+        <h4 class="modal-title text-white">{{titre}}</h4>
+        <button id="closeModal" type="button" class="close btn-danger" (click)="onClose()">&times;</button>
+    </div>
+
+    <!-- Modal body -->
+    <div class="modal-body profil">
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <span class="text-info">Motif : </span> <span> {{operation.motif}}</span>
+            </div>
+    
+            <div class="col-md-6">
+                <span class="tex-info">Administrateur : </span> <span> {{admin.nom}} {{admin.prenom}}</span>
+            </div>
+        </div>
+       
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Produit</th>
+                    <th>Quantite comptée</th>
+                    <th>Quantite en Stock</th>
+                    <th>Quantite Reel</th>
+                    <th>Ajusté</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let cat of catData.data">
+                <tr>
+                    <td colspan="4" class="text-center text-info">{{cat.nom}}</td>
+                </tr>
+                <tr [ngClass]="{'table-row': true, 'table-row-danger': item.quantiteCompte!=item.quantiteStock, 'table-row-warning':item.quantiteCompte===null}"
+                    *ngFor="let item of produitsArray|byCategorie: cat.id; let i=index">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{item.nom}}</td>
+                    <td>
+                        {{item.quantiteCompte}}
+                    </td>
+                    <td>
+                        {{item.quantiteStock}}
+                    </td>
+                    <td>
+                            {{item.quantiteReel}}
+                        </td>
+                    <td>
+                       <span *ngIf="item.ajust===1">Oui</span>
+                       <span *ngIf="item.ajust===0">Non</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
