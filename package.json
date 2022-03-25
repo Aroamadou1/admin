@@ -64,7 +64,7 @@
     "jquery": "^3.4.1",
     "ngx-spinner": "^8.0.3",
     "ngx-toastr": "^11.1.2",
-    "electron": "7.0.0",
+    "electron": "13.6.6",
     "electron-builder": "21.2.0",
     "electron-reload": "1.5.0",
     "jasmine-core": "3.4.0",
